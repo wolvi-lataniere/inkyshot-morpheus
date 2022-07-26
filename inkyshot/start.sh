@@ -21,8 +21,15 @@ else
   UpdateHour='*'
 fi
 
-# Add the job to the crontab using update_hour var, defaulting to 9 AM
-(echo "${Alternate} ${UpdateHour} * * * /usr/app/run-update.sh > /proc/1/fd/1 2>&1") | crontab -
+# Request sleep for 1h
+./morpheus.sh -a ${MORPHEUS_ADDR} -w TimeSleep 1800
 
-# Start the cron daemon as PID 1
-exec cron -f
+# Clean turn-off
+curl -X POST --header "Content-Type:application/json" \
+    "$BALENA_SUPERVISOR_ADDRESS/v1/shutdown?apikey=$BALENA_SUPERVISOR_API_KEY"
+
+# Prevent from quitting
+while :
+do
+  sleep 1h
+done
