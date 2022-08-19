@@ -81,7 +81,7 @@ if [ -z ${MORPHEUS_ADDRESS} ]; then
     usage
 fi
 
-PRE_DELAY=${PRE_DELAY_PARAM:-60}
+PRE_DELAY=${PRE_DELAY_PARAM:-80}
 
 # Grab the command
 COMMAND=${@:$OPTIND:1}

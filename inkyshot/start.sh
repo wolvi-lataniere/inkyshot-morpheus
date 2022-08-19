@@ -22,7 +22,8 @@ else
 fi
 
 # Request sleep for 1h
-./morpheus.sh -a ${MORPHEUS_ADDR} -w TimeSleep 1800
+SLEEPTIME=${SLEEPTIME:-3600}
+./morpheus.sh -a ${MORPHEUS_ADDR} -w TimeSleep ${SLEEPTIME} 
 
 # Clean turn-off
 curl -X POST --header "Content-Type:application/json" \
